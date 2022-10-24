@@ -32,4 +32,14 @@ def get_file_dimensions(file_name):
 
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
-	return None
+    
+    if type(file_name) != str:
+        raise TypeError('file_name must be a string')
+
+    # exceptions handled in get_randmom_matrix
+    data = get_random_matrix(num_rows, num_columns)
+
+    data_df = pd.DataFrame(data)
+    data_df.to_csv(file_name + '.csv', sep=',')
+
+    return True
