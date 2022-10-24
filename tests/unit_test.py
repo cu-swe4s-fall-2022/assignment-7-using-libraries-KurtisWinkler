@@ -104,11 +104,11 @@ class TestUtils(unittest.TestCase):
     def test_error_write_matrix_to_file(self):
 
         # Type error if file_name not string
-        self.assertRaises(TypeError, dp.write_matrix_to_file, 10)
+        self.assertRaises(TypeError, dp.write_matrix_to_file, 5, 5, 5)
         
         # TypeError if input not integer
-        self.assertRaises(TypeError, dp.write_matrix_to_file, 2.5, 4)
-        self.assertRaises(TypeError, dp.write_matrix_to_file, 3, 'a')
+        self.assertRaises(TypeError, dp.write_matrix_to_file, 2.5, 4, 'a')
+        self.assertRaises(TypeError, dp.write_matrix_to_file, 3, 'a', 'a')
 
     def test_fixed__write_matrix_to_file(self):
 
