@@ -7,12 +7,6 @@ import data_processor as dp  # nopep8
 
 class TestUtils(unittest.TestCase):
 
-    def setUp(self):
-
-
-    def tearDown(self):
-
-
     # ***Test get_random_matrix***
     def test_error_get_random_matrix(self):
         # TypeError if input not integer
