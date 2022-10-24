@@ -1,6 +1,7 @@
 import unittest
 import random
 import numpy as np
+import os
 import sys
 sys.path.append('/home/jovyan/assignment-7-using-libraries-KurtisWinkler')
 import data_processor as dp  # nopep8
@@ -11,7 +12,7 @@ class TestUtils(unittest.TestCase):
         self.test_file_fixed = 'setup_test_file_fixed.txt'
         f_fixed = open(self.test_file_fixed, 'w')
         for i in range(100):
-            f_fixed.write(str(i, i + 1, i + 2) + '\n')
+            f_fixed.write(str([i, i + 1, i + 2]) + '\n')
         f_fixed.close()
         
         self.test_file_rand = 'setup_test_file_rand.txt'
@@ -19,11 +20,13 @@ class TestUtils(unittest.TestCase):
         self.rand_num = random.randint(1,100)
         for i in range(self.rand_num):
             rand_int = random.randint(1,100)
-            f_rand.write(str(rand_int, rand_int * 2) + '\n')
+            f_rand.write(str([rand_int, rand_int * 2]) + '\n')
         f_rand.close()
 
+        
     def tearDown(self):
-        os.remove(self.test_file_name)
+        os.remove(self.test_file_fixed)
+        os.remove(self.test_file_rand)
     
     # ***Test get_random_matrix***
     def test_error_get_random_matrix(self):
@@ -71,31 +74,31 @@ class TestUtils(unittest.TestCase):
         # negative test
         self.assertNotEqual((a-1,b), real.shape)
         
-        # ***Test get_file_dimensions***
-        def test_error_get_file_dimensions(self):
-            
-            # FileNotFoundError if input not integer
-            self.assertRaises(FileNotFoundError, dp.get_file_dimensions, 'a.txt')
+    # ***Test get_file_dimensions***
+    def test_error_get_file_dimensions(self):
 
-        def test_fixed_get_file_dimensions(self):
+        # FileNotFoundError if input not integer
+        self.assertRaises(FileNotFoundError, dp.get_file_dimensions, 'a.txt')
 
-            real_dim = dp.get_file_dimensions(self.test_file_fixed)
+    def test_fixed_get_file_dimensions(self):
 
-            # positve test
-            self.assertEqual((100, 3), real_dim)
+        real_dim = dp.get_file_dimensions(self.test_file_fixed)
 
-            # negative test
-            self.assertNotEqual((99, 3), real_dim)
+        # positve test
+        self.assertEqual((100, 3), real_dim)
 
-        def test_fixed_get_file_dimensions(self):
+        # negative test
+        self.assertNotEqual((99, 3), real_dim)
 
-            real_dim = dp.get_file_dimensions(self.test_file_rand)
+    def test_rand_get_file_dimensions(self):
 
-            # positve test
-            self.assertEqual((self.rand_num, 2), real_dim)
+        real_dim = dp.get_file_dimensions(self.test_file_rand)
 
-            # negative test
-            self.assertNotEqual((self.rand_num-1, 2), real_dim)
+        # positve test
+        self.assertEqual((self.rand_num, 2), real_dim)
+
+        # negative test
+        self.assertNotEqual((self.rand_num-1, 2), real_dim)
 
 
 
