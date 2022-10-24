@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+import sys
 
 def get_random_matrix(num_rows, num_columns):
     
@@ -12,8 +12,24 @@ def get_random_matrix(num_rows, num_columns):
 
     return np.random.rand(num_rows, num_columns)
 
+
 def get_file_dimensions(file_name):
-	return (0,0)
+
+    try:
+        file = pd.read_csv(file_name, sep=',', header=None)
+
+    except FileNotFoundError:
+        raise FileNotFoundError('Could not find ' + file_name)
+
+    except PermissionError:
+        raise PermissionError('Do not have permission to open ' + file_name)
+
+    except Exception as e:
+        print('Could not open ' + file_name)
+        sys.exit(1)
+
+    return file.shape
+
 
 def write_matrix_to_file(num_rows, num_columns, file_name):
 	return None
