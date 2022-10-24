@@ -2,7 +2,7 @@ import unittest
 import random
 import numpy as np
 import sys
-sys.path.append('../')
+sys.path.append('/home/jovyan/assignment-7-using-libraries-KurtisWinkler')
 import data_processor as dp  # nopep8
 
 class TestUtils(unittest.TestCase):
@@ -25,13 +25,15 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(test.shape, real.shape)
         
         # values >= 0
-        self.assertGreaterEqual(min(real), 0)
+        real_min = real.min()
+        self.assertGreaterEqual(real_min, 0)
         
         # values <= 1
-        self.assertLessEqual(max(real), 1)
+        real_max = real.max()
+        self.assertLessEqual(real_max, 1)
         
         # negative test
-        self.assertEqual((1,1),real.shape)
+        self.assertNotEqual((1,1),real.shape)
                          
     def test_random_get_random_matrix(self):
         a = random.randint(1,10)
@@ -42,13 +44,15 @@ class TestUtils(unittest.TestCase):
         self.assertEqual((a,b), real.shape)
         
         # values >= 0
-        self.assertGreaterEqual(min(real), 0)
+        real_min = real.min()
+        self.assertGreaterEqual(real_min, 0)
         
         # values <= 1
-        self.assertLessEqual(max(real), 1)
+        real_max = real.max()
+        self.assertLessEqual(real_max, 1)
         
         # negative test
-        self.assertEqual((a-1,b), real.shape)
+        self.assertNotEqual((a-1,b), real.shape)
         
         
 if __name__ == '__main__':
