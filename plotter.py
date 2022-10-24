@@ -28,9 +28,24 @@ def get_args():
 
 
 def main():
+
     args = get_args()
 
-    iris = pd.read_csv(args.file_name, sep=',', header=None)
+    try:
+        iris = pd.read_csv(args.file_name, sep=',', header=None)
+
+    except FileNotFoundError:
+        print('Could not find ' + args.file_name)
+        sys.exit(1)
+
+    except PermissionError:
+        print('Do not have permission to open ' + arg.file_name)
+        sys.exit(1)
+
+    except Exception as e:
+        print('Could not open ' + args.file_name)
+        sys.exit(1)
+
     iris.columns = ['sepal_width',
                     'sepal_length',
                     'petal_width',
