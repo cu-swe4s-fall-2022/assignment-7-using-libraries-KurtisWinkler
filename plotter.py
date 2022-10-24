@@ -29,7 +29,7 @@ def get_args():
 def main():
     args = get_args()
 
-    iris = pd.read_csv('iris.data', sep=',', header=None)
+    iris = pd.read_csv(args.file_name, sep=',', header=None)
     iris.columns = ['sepal_width',
                     'sepal_length',
                     'petal_width',
