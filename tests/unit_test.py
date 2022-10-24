@@ -3,7 +3,7 @@ import random
 import numpy as np
 import os
 import sys
-sys.path.append('/home/jovyan/assignment-7-using-libraries-KurtisWinkler')
+sys.path.append('..\')
 import data_processor as dp  # nopep8
 
 
