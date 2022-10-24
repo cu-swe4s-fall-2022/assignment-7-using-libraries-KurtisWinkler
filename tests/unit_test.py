@@ -77,7 +77,7 @@ class TestUtils(unittest.TestCase):
     # ***Test get_file_dimensions***
     def test_error_get_file_dimensions(self):
 
-        # FileNotFoundError if input not integer
+        # FileNotFoundError if file not found
         self.assertRaises(FileNotFoundError, dp.get_file_dimensions, 'a.txt')
 
     def test_fixed_get_file_dimensions(self):
@@ -100,6 +100,37 @@ class TestUtils(unittest.TestCase):
         # negative test
         self.assertNotEqual((self.rand_num-1, 2), real_dim)
 
+    # ***Test write_matrix_to_file***
+    def test_error_write_matrix_to_file(self):
+
+        # Type error if file_name not string
+        self.assertRaises(TypeError, dp.write_matrix_to_file, 10)
+        
+        # TypeError if input not integer
+        self.assertRaises(TypeError, dp.write_matrix_to_file, 2.5, 4)
+        self.assertRaises(TypeError, dp.write_matrix_to_file, 3, 'a')
+
+    def test_fixed__write_matrix_to_file(self):
+
+        real_val = dp.write_matrix_to_file(5, 5, 'a')
+        
+        # positve test - return true if succeeds
+        self.assertEqual(True, real_val)
+
+        # negative test
+        self.assertNotEqual(False, real_val)
+
+    def test_rand__write_matrix_to_file(self):
+
+        a = random.randint(1,10)
+        b = random.randint(1,10)
+        real_val = dp.write_matrix_to_file(a, b, 'a')
+        
+        # positve test - return true if succeeds
+        self.assertEqual(True, real_val)
+
+        # negative test
+        self.assertNotEqual(False, real_val)
 
 
 if __name__ == '__main__':
