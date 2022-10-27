@@ -1,3 +1,20 @@
+"""Processes iris data from a specified file.
+   Creates a box plot of iris parameters
+   Creates a scatter plot of petal length vs petal width
+   with each species labeled
+   Creates a multi-panel plot with box plot and scatter plot
+
+    Parameters
+    ----------
+    --file_name : string
+                   name of file containing data
+
+    Returns
+    -------
+    None
+
+"""
+
 import argparse
 import pandas as pd
 import matplotlib.pyplot as plt

@@ -1,3 +1,22 @@
+''' This script runs unit tests get_random_matrix
+    get_file_dimensions, and write_matrix_to_file
+
+    Test get_random_matrix:
+        TypeError
+        IndexError
+        Matrix is right shape
+        Values between 0 and 1
+
+    Test get_file_dimensions:
+        FileNotFoundError
+        Outputs correct dimensions
+
+    Test write_file_to_matrix:
+        TypeError
+        Returns True if succeeds
+
+'''
+
 import unittest
 import random
 import numpy as np
@@ -26,6 +45,7 @@ class TestUtils(unittest.TestCase):
         f_rand.close()
 
     def tearDown(self):
+        self.rand_num = None
         os.remove(self.test_file_fixed)
         os.remove(self.test_file_rand)
 
@@ -111,7 +131,7 @@ class TestUtils(unittest.TestCase):
         self.assertRaises(TypeError, dp.write_matrix_to_file, 2.5, 4, 'a')
         self.assertRaises(TypeError, dp.write_matrix_to_file, 3, 'a', 'a')
 
-    def test_fixed__write_matrix_to_file(self):
+    def test_fixed_write_matrix_to_file(self):
 
         real_val = dp.write_matrix_to_file(5, 5, 'a')
 
@@ -121,7 +141,7 @@ class TestUtils(unittest.TestCase):
         # negative test
         self.assertNotEqual(False, real_val)
 
-    def test_rand__write_matrix_to_file(self):
+    def test_rand_write_matrix_to_file(self):
 
         a = random.randint(1, 10)
         b = random.randint(1, 10)
